@@ -1,22 +1,23 @@
 import asyncio
 import logging
+from aiogram import Bot, Dispatcher, types
+from aiogram.filters.command import Command
 
-from aiogram import Bot, Dispatcher
-from aiogram.enums.parse_mode import ParseMode
-from aiogram.fsm.storage.memory import MemoryStorage
+# Включаем логирование, чтобы не пропустить важные сообщения
+logging.basicConfig(level=logging.INFO)
+# Объект бота
+bot = Bot(token="6258672653:AAFq2N3kTtaAgUr0F-ZbJvQcMsWtOa4QiAA")
+# Диспетчер
+dp = Dispatcher()
 
-import config
-from handlers import router
+# Хэндлер на команду /start
+@dp.message(Command("start"))
+async def cmd_start(message: types.Message):
+    await message.answer("Hello!")
 
-
+# Запуск процесса поллинга новых апдейтов
 async def main():
-    bot = Bot(token="6258672653:AAFq2N3kTtaAgUr0F-ZbJvQcMsWtOa4QiAA", parse_mode=ParseMode.HTML)
-    dp = Dispatcher(storage=MemoryStorage())
-    dp.include_router(router)
-    await bot.delete_webhook(drop_pending_updates=True)
-    await dp.start_polling(bot, allowed_updates=dp.resolve_used_update_types())
-
+    await dp.start_polling(bot)
 
 if __name__ == "__main__":
-    logging.basicConfig(level=logging.INFO)
     asyncio.run(main())
