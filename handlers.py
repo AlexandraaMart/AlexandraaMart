@@ -6,7 +6,7 @@ router = Router()
 
 @router.message(Command("start"))   #функция является обработчиком входящих сообщений
 async def start_handler(msg: Message):
-    await msg.answer("Привт! Я помогу тебе узнать твой ID, просто отправь мне любое сообщение")
+    await msg.answer("Привет! Я помогу тебе узнать твой ID, просто отправь мне любое сообщение")
 
 @router.message(Command("end"))   #функция является обработчиком входящих сообщений
 async def end_handler(msg: Message):
