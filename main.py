@@ -6,12 +6,12 @@ bot = Bot(token="6258672653:AAFq2N3kTtaAgUr0F-ZbJvQcMsWtOa4QiAA")
 dp = Dispatcher()
 
 # Обработчик команды /start
-@dp.message_handler(commands=['start'])
+@dp.message(commands=['start'])
 async def start(message: types.Message):
     await message.reply("Привет! Я асинхронный бот.")
 
 # Обработчик текстовых сообщений
-@dp.message_handler(content_types=types.ContentType.TEXT)
+@dp.message(content_types=types.ContentType.TEXT)
 async def echo(message: types.Message):
     await message.answer(message.text)
 
