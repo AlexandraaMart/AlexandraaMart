@@ -1,21 +1,26 @@
-import asyncio #для асинхронного запуска бота
-import logging #для настройки логгирования, которое поможет в отладке
+import asyncio
+from aiogram import Bot, Dispatcher, types
 
-from aiogram import Bot, Dispatcher
-from aiogram.enums.parse_mode import ParseMode #содержит настройки разметки сообщений (HTML, Markdown)
-from aiogram.fsm.storage.memory import MemoryStorage #хранилища данных для состояний пользователей
+# Создание экземпляра бота и диспетчера
+bot = Bot(token="6258672653:AAFq2N3kTtaAgUr0F-ZbJvQcMsWtOa4QiAA")
+dp = Dispatcher()
 
-import config #настройки бота
-from handlers import router #мы напишем в нём функционал нашего бота
+# Обработчик команды /start
+@dp.message_handler(commands=['start'])
+async def start(message: types.Message):
+    await message.reply("Привет! Я асинхронный бот.")
 
+# Обработчик текстовых сообщений
+@dp.message_handler(content_types=types.ContentType.TEXT)
+async def echo(message: types.Message):
+    await message.answer(message.text)
+
+# Функция запуска бота
 async def main():
-    bot = Bot(token=config.BOT_TOKEN, parse_mode=ParseMode.HTML)
-    dp = Dispatcher(storage=MemoryStorage())
-    dp.include_router(router)
-    await bot.delete_webhook(drop_pending_updates=True)
-    await dp.start_polling(bot, allowed_updates=dp.resolve_used_update_types())
+    # Старт бота
+    await bot.start_polling()
 
-
-if __name__ == "__main__":
-    logging.basicConfig(level=logging.INFO)
-    asyncio.run(main())
+# Запуск функции main в асинхронном режиме
+if __name__ == '__main__':
+    loop = asyncio.get_event_loop()
+    loop.run_until_complete(main())
