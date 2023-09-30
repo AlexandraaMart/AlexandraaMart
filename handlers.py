@@ -11,3 +11,7 @@ async def start_handler(msg: Message):
 @router.message() #реагирует на все сообщения, так как у него не задан ни один фильтр
 async def message_handler(msg: Message):
     await msg.answer(f"Твой ID: {msg.from_user.id}")
+
+@router.message(Command("end"))   #функция является обработчиком входящих сообщений
+async def end_handler(msg: Message):
+    await msg.answer("Пока! Если понадоблюсь, то я тут")
