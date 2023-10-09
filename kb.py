@@ -1,5 +1,26 @@
 from aiogram.types import InlineKeyboardButton, InlineKeyboardMarkup, KeyboardButton, ReplyKeyboardMarkup, ReplyKeyboardRemove
 
+menu1 = [
+    [InlineKeyboardButton(text="Студент", callback_data="student"),
+    InlineKeyboardButton(text="Преподаватель", callback_data="teacher")]
+]
+
+menu2 = [
+    [InlineKeyboardButton(text="ФизМат", callback_data="FizMat"),
+    InlineKeyboardButton(text="Филос", callback_data="Filos")],
+    [InlineKeyboardButton(text="ИстФак", callback_data="IstFac"),
+    InlineKeyboardButton(text="АСИ", callback_data="ASI")]
+]
+
+menu3 = [
+    [InlineKeyboardButton(text="1", callback_data="1"),
+    InlineKeyboardButton(text="2", callback_data="2")],
+    [InlineKeyboardButton(text="3", callback_data="3"),
+    InlineKeyboardButton(text="4", callback_data="4")],
+    [InlineKeyboardButton(text="5", callback_data="5")]
+]
+
+
 menu = [
     [InlineKeyboardButton(text="Расписание", callback_data="timetable"),
     InlineKeyboardButton(text="Экзамены", callback_data="exams")],

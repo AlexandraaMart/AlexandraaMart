@@ -8,23 +8,22 @@ import text
 router = Router()
 
 @router.message(Command("start"))   #функция является обработчиком входящих сообщений
-async def start_handler(msg: Message):
-    await msg.answer("Привет! Я помогу тебе узнать твой ID, просто отправь мне /id")
+async def menu_handler(msg: Message):
+    await msg.answer("Привет! Сначала выясним, кто вы", text.greet.format(name=msg.from_user.full_name), reply_markup=kb.menu1)
 
-@router.message(Command("end"))   #функция является обработчиком входящих сообщений
-async def end_handler(msg: Message):
-    await msg.answer("Пока! Если понадоблюсь, то я тут")
-
-@router.message(Command("id"))
-async def id_handler(msg: Message):
-    await msg.answer(f"Твой ID: {msg.from_user.id}")
+@router.message(content_types=['text'])
+async def func(msg: Message):
+    if(msg.text == "Студент"):
+        await msg.answer(text.greet.format(name=msg.from_user.full_name), reply_markup=kb.menu2)
+    elif(msg.text == "Преподаватель"):
+        await msg.answer("Привет, пока работаю только со студентами")
 
 @router.message(Command("Menu"))
 async def menu_handler(msg: Message):
     await msg.answer(text.greet.format(name=msg.from_user.full_name), reply_markup=kb.menu)
 
 @router.message(F.text == "Меню")
-@router.message(F.text == "Выйти в меню")
-@router.message(F.text == "◀️ Выйти в меню")
+@router.message(F.text == "меню")
+@router.message(F.text == "menu")
 async def menu(msg: Message):
     await msg.answer(text.menu, reply_markup=kb.menu)
