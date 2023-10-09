@@ -9,7 +9,7 @@ router = Router()
 
 @router.message(Command("start"))   #функция является обработчиком входящих сообщений
 async def menu_handler(msg: Message):
-    await msg.answer("Привет! Сначала выясним, кто вы", text.greet.format(name=msg.from_user.full_name), reply_markup=kb.menu1)
+    await msg.answer(text.greet.format(name=msg.from_user.full_name), reply_markup=kb.menu1)
 
 #@router.message(Command("Студент"))
 #async def func(msg: Message):
