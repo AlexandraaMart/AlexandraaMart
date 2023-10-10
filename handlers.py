@@ -11,9 +11,13 @@ router = Router()
 async def start_handler(msg: Message):
     await msg.answer(text.greet.format(name=msg.from_user.full_name), reply_markup=kb.menu)
 
-@router.callback_query(F.data == "student")
-async def studen_handler(msg: Message):
-    await msg.answer(text.facultet, reply_markup=kb.menu)
+#@router.callback_query(F.data == "student")
+#async def student_handler(msg: Message):
+#    await msg.answer(text.facultet, reply_markup=kb.menu)
+
+@router.message(F.text.lower() == "student")
+async def student_handler(msg: types.Message):
+    await msg.reply(text.facultet, reply_markup=kb.menu)
 
 #@router.message(F.text == "Меню")
 #@router.message(F.text == "меню")
