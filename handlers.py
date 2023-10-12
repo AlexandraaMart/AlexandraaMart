@@ -13,7 +13,7 @@ async def start_handler(msg: Message):
 
 @router.callback_query(F.data == "student")
 async def student_handler(msg: Message):
-    await msg.answer(text.facultet, reply_markup=kb.menu)
+    await msg.answer(text.facultet, reply_markup=kb.menu1)
 
 #@router.message(F.text.lower() == "student")
 #async def student_handler(msg: types.Message):

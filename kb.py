@@ -11,11 +11,13 @@ iexit_kb = InlineKeyboardMarkup(inline_keyboard=[[InlineKeyboardButton(text="м�
 
 
 
-#menu1 = [
- #   [InlineKeyboardButton(text="АСИ", callback_data="ASI"),
-  #  InlineKeyboardButton(text="ФизМат", callback_data="FizMat")]
-#]
-#menu1 = InlineKeyboardMarkup(inline_keyboard=menu1)
 
-#exit_kb = ReplyKeyboardMarkup(keyboard=[[KeyboardButton(text="◀️ Выйти в меню")]], resize_keyboard=True)
-#iexit_kb = InlineKeyboardMarkup(inline_keyboard=[[InlineKeyboardButton(text="◀️ Выйти в меню", callback_data="menu1")]])
+
+menu1 = [
+    [InlineKeyboardButton(text="АСИ", callback_data="ASI"),
+    InlineKeyboardButton(text="ФизМат", callback_data="FizMat")]
+]
+menu1 = InlineKeyboardMarkup(inline_keyboard=menu1)
+
+ex_kb = ReplyKeyboardMarkup(keyboard=[[KeyboardButton(text="Студент")]], resize_keyboard=True)
+ie_kb = InlineKeyboardMarkup(inline_keyboard=[[InlineKeyboardButton(text="Студент", callback_data="student")]])
